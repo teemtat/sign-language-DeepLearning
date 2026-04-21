@@ -74,6 +74,22 @@ The notebook will download it from:
 https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task
 ```
 
+### Or using Docker
+
+1. In Terminal or Command line
+
+```bash
+cd 4_6688076-6688098-6688143/src
+docker compose up
+```
+
+2. Then run the containers in Docker Desktop
+3. Go to localhost:8888 (Jupyter Notebook)
+4. The environment will be already set up
+
+*** Note:*** Camera detection in camera_detect.ipynb cannot be used, since it uses mediapipe, which cannot find the webcam.
+
+
 ---
 
 ## 📂 Project Structure
@@ -85,8 +101,7 @@ sign-language-DeepLearning/
 ├── hand_landmarker.task               # MediaPipe model (auto-downloaded)
 │
 ├── 📔 NOTEBOOKS:
-├── main.ipynb                         # EDA & data exploration
-├── baselineCNN.ipynb                  # Train baseline CNN model
+├── EDA.ipynb                         # EDA & data exploration
 ├── camera_detect.ipynb                # ⭐ Real-time detection (requires webcam)
 ├── experiment_models.ipynb            # Test multiple architectures
 │
@@ -100,24 +115,16 @@ sign-language-DeepLearning/
 │
 ├── outputs/                           # Trained models (saved as .keras)
 │   ├── baseline_cnn/best_model.keras
-│   ├── depthwise_cnn/best_model.keras
-│   ├── inception_cnn/best_model.keras
-│   ├── residual_cnn/best_model.keras
-│   └── se_cnn/best_model.keras
 │
 └── logs/                              # TensorBoard training logs
     ├── baseline_cnn/
-    ├── depthwise_cnn/
-    ├── inception_cnn/
-    ├── residual_cnn/
-    └── se_cnn/
 ```
 
 ---
 
 ## 📔 Notebook Guide
 
-### 1️⃣ **main.ipynb** — EDA & Data Exploration
+### 1️⃣ **EDA.ipynb** — EDA & Data Exploration
 - Load and explore the Sign Language MNIST dataset
 - Visualize class distribution and sample images
 - Check for missing values and duplicates
@@ -125,24 +132,14 @@ sign-language-DeepLearning/
 - **Run time**: ~2 minutes
 - **Prerequisites**: None (data included)
 
-### 2️⃣ **baselineCNN.ipynb** — Train Baseline Model
-- Build and train a simple CNN classifier
-- Train/validation/test split
-- Plot accuracy, loss, and confusion matrix
-- Save best model to `outputs/baseline_cnn/best_model.keras`
-- **Dependencies**: tensorflow, keras, scikit-learn, matplotlib
-- **Run time**: ~20-30 minutes (GPU: ~5-10 minutes)
-- **Prerequisites**: main.ipynb (recommended but optional)
-
-### 3️⃣ **experiment_models.ipynb** — Compare Multiple Architectures
-- Train 5 different CNN models (Baseline, Depthwise, Inception, Residual, SE-Net)
+### 2️⃣ **experiment_models.ipynb** — Compare Multiple Architectures
+- Train 3 different CNN models (Baseline, DenseNet, MobielNet)
 - Compare performance across architectures
 - Generate gridsearch results CSVs
 - **Dependencies**: tensorflow, keras, scikit-learn
 - **Run time**: ~2-3 hours (GPU: ~30-45 minutes)
-- **Prerequisites**: baselineCNN.ipynb (recommmended)
 
-### 4️⃣ **camera_detect.ipynb** — Real-Time Detection ⭐
+### 3️⃣ **camera_detect.ipynb** — Real-Time Detection ⭐
 The star of the show! Real-time sign language detection through your webcam.
 
 **Features:**
@@ -240,9 +237,8 @@ jupyter notebook baselineCNN.ipynb
 
 **For first-time users:**
 1. ✅ Activate environment and install dependencies
-2. ✅ Run `main.ipynb` (quick data exploration)
-3. ✅ Run `baselineCNN.ipynb` (train model if needed)
-4. ✅ Run `camera_detect.ipynb` (real-time detection)
+2. ✅ Run `EDA.ipynb` (quick data exploration)
+3. ✅ Run `camera_detect.ipynb` (real-time detection)
 
 **For model experimentation:**
 1. ✅ Run `experiment_models.ipynb` to train multiple models
@@ -257,11 +253,10 @@ All trained models are pre-saved in the `outputs/` folder:
 
 | Model | Path | Accuracy | Architecture |
 |-------|------|----------|--------------|
-| Baseline CNN | `outputs/baseline_cnn/best_model.keras` | ~95% | 3-layer CNN |
-| Depthwise CNN | `outputs/depthwise_cnn/best_model.keras` | ~94% | Depthwise separable |
-| Inception CNN | `outputs/inception_cnn/best_model.keras` | ~96% | Inception blocks |
-| Residual CNN | `outputs/residual_cnn/best_model.keras` | ~96% | ResNet-style |
-| SE-Net CNN | `outputs/se_cnn/best_model.keras` | ~95% | Squeeze-Excitation |
+| Baseline CNN | `outputs/baseline_cnn/best_model.keras` | ~99.6% | 3-layer CNN |
+| DenseNet | `outputs/best_model.keras` | ~90.9% | - |
+| MobileNetV2 | `outputs/best_model.keras` | ~4.70% | - |
+
 
 ---
 
