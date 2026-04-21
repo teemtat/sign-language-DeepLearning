@@ -1,5 +1,7 @@
 # 📷 Sign Language Deep Learning - Complete Setup Guide
 
+Link to Git hub: https://github.com/teemtat/sign-language-DeepLearning.git
+
 A real-time sign language alphabet (A-Z) detection system using deep learning models trained on the Sign Language MNIST dataset. Features include multiple CNN architectures, transfer learning models, and real-time camera detection using MediaPipe.
 
 ---
