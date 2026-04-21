@@ -1,0 +1,15 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+.DS_Store
+logs/
+outputs/
+*.egg-info
+.ipynb_checkpoints
+setup.bat
+setup.sh
+verify_setup.py
+SHARING_GUIDE.md
+SETUP_INDEX.md
+QUICK_START.md
